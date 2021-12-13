@@ -1,0 +1,22 @@
+.nav {
+    width: 100px;
+    grid-area: n;
+    background-color: gold;
+    justify-self: center;
+    padding: 20px;
+}
+
+.items a{
+    color: red;
+    text-transform: uppercase;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.items a.active {
+    color: blue;
+}
+.active-link{
+    color: darkred;
+    cursor: default;
+}

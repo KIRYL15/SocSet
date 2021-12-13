@@ -1,0 +1,29 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 5fr 20fr;
+}
+
+.header {
+    grid-area: h;
+    background-color: hotpink;
+}
+
+.header img {
+    width: 100px;
+    border-radius: 50px;
+}
+.dialogsItems {
+    padding: 10px;
+    color: beige;
+}
+.dialogsItems .active {
+    color: beige;
+
+}
+.messages {
+    padding: 10px;
+}
+
+.message {
+    color: beige;
+}
