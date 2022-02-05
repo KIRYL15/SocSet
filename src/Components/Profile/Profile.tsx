@@ -1,16 +1,24 @@
 import React from "react";
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {postDataType, PostType, RootStateType} from "../state";
+import {GenerationType, profilePageType} from "../../Redux/state";
 
-type ProfilePropsType={
-    postData: postDataType
+type ProfilePropsType = {
+    profilePage: profilePageType
+    messages: string
+    dispatch:(action: GenerationType)=>void
 }
 
 export function Profile(props: ProfilePropsType) {
-    return (<div>
+    //debugger
+    return (
+        <div>
             <ProfileInfo/>
-            <MyPosts post={props.postData.post} />
+            <MyPosts post={props.profilePage.post}
+                     messages={props.profilePage.newPost}
+                     dispatch={props.dispatch}
+
+            />
         </div>
     )
 }

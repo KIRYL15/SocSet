@@ -1,15 +1,18 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import ReactDOM from "react-dom";
 import {BrowserRouter} from "react-router-dom";
-import {state} from "./Components/state";
-ReactDOM.render(
-        <BrowserRouter>
-            <App state={state}/>
-        </BrowserRouter>,
-    document.getElementById('root')
-);
+import {App} from "./App";
+import {store} from "./Redux/state";
 
-reportWebVitals();
+ export let renderTree = () => {
+    ReactDOM.render(
+        <BrowserRouter>
+            <App store={store}/>
+        </BrowserRouter>,
+        document.getElementById('root')
+    );
+}
+
+renderTree()
+store.subscribe(renderTree)

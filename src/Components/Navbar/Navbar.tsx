@@ -2,7 +2,7 @@ import React from "react";
 import {NavLink} from "react-router-dom";
 import style from "./Navbar.module.css"
 
-const setActive = ({isActive}: { isActive: boolean }) => isActive ? style.active : ""
+const setActive = ({isActive} : { isActive: boolean }) => isActive ? style.active : ""
 
 export function Navbar() {
     return (
@@ -21,6 +21,9 @@ export function Navbar() {
             </div>
             <div className={style.items}>
                 <NavLink to='/setting' className={setActive}>Settings</NavLink>
+            </div>
+            <div className={style.friends}>
+                <NavLink to='/sitebar' className={setActive}>Friends</NavLink>
             </div>
         </nav>
     )
