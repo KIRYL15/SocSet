@@ -5,27 +5,28 @@ import {Dialogs} from "./Components/Dialogs/Dialogs";
 import {Header} from "./Components/Header/Header";
 import {Profile} from "./Components/Profile/Profile";
 import "./App.css"
-import {RootStateType} from "./Components/state";
+import {addPost, changeNewText, state, updateNewPostText} from "./Redux/state";
 
-type AppPropsType = {
-    state: RootStateType
-}
 
-function App(props: AppPropsType) {
-    return (
+export function App() {
+       return (
         <div className='app-wrapper'>
             <Header/>
             <Navbar/>
-            <div className={'app-wrapper-content'}>
+            <div className='app-wrapper-content'>
                 <Routes>
-                    <Route path={'/dialogs'}
-                           element={<Dialogs dialogsData={props.state.dialogsData} postData={props.state.postData}/>}/>
-                    <Route path={'/profile'}
-                           element={<Profile postData={props.state.postData}/>}/>
+                    <Route path='/dialogs'
+                           element={<Dialogs dialogsPage={state.dialogsPage}/>}/>
+                    <Route path='/profile'
+                           element={<Profile profilePage={state.profilePage}
+                                             addPostCallback={addPost}
+                                             messages={state.profilePage.newPost}
+                                             changeNewTextCallback={changeNewText}
+
+
+                           />}/>
                 </Routes>
             </div>
         </div>
     );
 }
-
-export default App;
