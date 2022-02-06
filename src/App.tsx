@@ -5,28 +5,32 @@ import {Dialogs} from "./Components/Dialogs/Dialogs";
 import {Header} from "./Components/Header/Header";
 import {Profile} from "./Components/Profile/Profile";
 import "./App.css"
-import {StoreType} from "./Redux/state";
+import {store, StoreType} from "./Redux/state";
 
-type PropsType = {
+type AppPropsType = {
     store: StoreType
 }
-export const App = (props: PropsType) => {
+
+export const App = (props: AppPropsType) => {
     const state = props.store.getState()
     return (
+
         <div className='app-wrapper'>
             <Header/>
             <Navbar/>
-            <div className='app-wrapper-content'>
+            <div className={'app-wrapper-content'}>
                 <Routes>
-                    <Route path='/dialogs'
+                    <Route path={'/dialogs'}
                            element={<Dialogs dialogsPage={state.dialogsPage}/>}/>
-                    <Route path='/profile'
-                           element={<Profile profilePage={state.profilePage}
-                                             dispatch={props.store.dispatch.bind(props.store)}
-                                             messages={state.profilePage.newPost}
+                    <Route path={'/profile'}
+                           element={<Profile
+                               profilePage={state.profilePage}
+                               messages={state.profilePage.newPost}
+                               dispatch={props.store.dispatch.bind(store)}
                            />}/>
                 </Routes>
             </div>
         </div>
     );
 }
+
