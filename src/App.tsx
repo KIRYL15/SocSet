@@ -5,7 +5,7 @@ import {Dialogs} from "./Components/Dialogs/Dialogs";
 import {Header} from "./Components/Header/Header";
 import {Profile} from "./Components/Profile/Profile";
 import "./App.css"
-import {store, StoreType} from "./Redux/state";
+import {store, StoreType} from "./Redux/store";
 
 type AppPropsType = {
     store: StoreType
@@ -18,11 +18,14 @@ export const App = (props: AppPropsType) => {
         <div className='app-wrapper'>
             <Header/>
             <Navbar/>
-            <div className={'app-wrapper-content'}>
+            <div className='app-wrapper-content'>
                 <Routes>
-                    <Route path={'/dialogs'}
-                           element={<Dialogs dialogsPage={state.dialogsPage}/>}/>
-                    <Route path={'/profile'}
+                    <Route path='/dialogs'
+                           element={<Dialogs dialogsPage={state.dialogsPage}
+                                             dispatch={props.store.dispatch.bind(store)}
+
+                           />}/>
+                    <Route path='/profile'
                            element={<Profile
                                profilePage={state.profilePage}
                                messages={state.profilePage.newPost}

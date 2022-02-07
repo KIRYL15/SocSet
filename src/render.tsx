@@ -3,6 +3,7 @@ import {BrowserRouter} from "react-router-dom";
 import {App} from "./App";
 import React from "react";
 
+/*
 export let renderTree = () => {
     ReactDOM.render(
         <BrowserRouter>
@@ -10,4 +11,4 @@ export let renderTree = () => {
         </BrowserRouter>,
         document.getElementById('root')
     );
-}
+}*/

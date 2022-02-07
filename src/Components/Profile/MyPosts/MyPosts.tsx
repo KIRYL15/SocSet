@@ -1,7 +1,8 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
-import {addPostAC, GenerationType, onChangeHandlerAC, PostType} from "../../../Redux/state";
+import {addPostAC, GenerationType, onChangeHandlerAC} from "../../../Redux/profile-reducer";
+import {PostType} from "../../../Redux/store";
 
 type postDataType = {
     post: PostType[]
@@ -23,7 +24,6 @@ export const MyPosts = (props: postDataType) => {
     }
     return (
         <div className={s.postsBlock}>
-
             <h2>My posts</h2>
             <div>
                 <div>

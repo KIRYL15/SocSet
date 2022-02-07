@@ -1,5 +1,5 @@
 .dialogs {
-    display: grid;
+    display: flex;
     grid-template-columns: 5fr 20fr;
 }
 
@@ -26,4 +26,11 @@
 
 .message {
     color: beige;
+}
+.textarea{
+
+}
+.button{
+    height: 30px;
+    width: 50px;
 }

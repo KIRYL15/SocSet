@@ -1,3 +1,7 @@
+import {GenerationType} from "./gialogs-reducer";
+import {DialogsReducer} from "./gialogs-reducer";
+import {ProfileReducer} from "./profile-reducer";
+
 export type StoreType = {
     _state: RootStateType
     _renderTree: () => void
@@ -5,12 +9,11 @@ export type StoreType = {
     getState: () => RootStateType
     dispatch: (action: GenerationType) => void
 }
-export type GenerationType = addPostACType | onChangeHandlerACType
 
 export const store: StoreType = {
     _state: {
         profilePage: {
-            newPost: 'Hello',
+            newPost: '',
             post: [
                 {id: 1, message: 'Hi how are you?', like: '15'},
                 {id: 2, message: 'It my first post', like: '23'},
@@ -32,8 +35,10 @@ export const store: StoreType = {
                 {id: 3, message: 'Привет'},
                 {id: 4, message: 'Yo'},
                 {id: 5, message: 'Salut'},
-            ]
+            ],
+            newMessageBody: ''
         },
+        sidebar: {}
     },
     _renderTree() {
         console.log('Hello')
@@ -45,25 +50,17 @@ export const store: StoreType = {
         return this._state
     },
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
-            const newPost: PostType = {
-                id: 5,
-                message: action.postText,
-                like: '1',
-            }
-            this._state.profilePage.post.push(newPost)
-            this._state.profilePage.newPost = ''
-            this._renderTree()
-        } else if (action.type === 'CHANGE-NEW-TEXT-POST') {
-            this._state.profilePage.newPost = action.newText
-            this._renderTree()
-        }
-    },
+        this._state.profilePage = ProfileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = DialogsReducer(this._state.dialogsPage, action)
+        //this._state.sidebarPage = SidebarReducer(this._state.sidebarPage, action)
+        this._renderTree()
+    }
 }
 
 export type RootStateType = {
     profilePage: profilePageType
     dialogsPage: dialogsPageType
+    sidebar: any
 }
 export type MessageDataType = {
     id: number
@@ -85,22 +82,11 @@ export type profilePageType = {
 export type dialogsPageType = {
     dialogs: DialogsType[]
     message: MessageDataType[]
+    newMessageBody: string
 }
 
-type addPostACType = ReturnType<typeof addPostAC>
-export const addPostAC = (postText: string) => {
-    return {
-        type: 'ADD-POST',
-        postText: postText
-    } as const
-}
-type onChangeHandlerACType = ReturnType<typeof onChangeHandlerAC>
-export const onChangeHandlerAC = (newText: string) => {
-    return {
-        type: 'CHANGE-NEW-TEXT-POST',
-        newText: newText
-    } as const
-}
+
+
 
 
 
